@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.contrib.auth import login, authenticate
+from django.db import IntegrityError
 
 # Create your views here.
 
@@ -20,13 +21,17 @@ def signup(request):
                 user = User.objects.create_user(
                     username=request.POST['username'], password=request.POST['password1'])
                 user.save()
-                return HttpResponse('User created successfully')
-            except Exception as e:
+                login(request, user)
+                return redirect('tasks')
+            except IntegrityError:
                 return render(request, 'signup.html', {
                     'form': UserCreationForm,
-                    'error': 'User alredy exist' + str(e)
+                    'error': 'User alredy exist'
                 })
         return render(request, 'signup.html', {
             'form': UserCreationForm,
             'error': 'password do not mach'
         })
+    
+def tasks(request):
+    return render(request, 'tasks.html')
