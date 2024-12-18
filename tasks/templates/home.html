@@ -1,7 +1,44 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>this is the home page</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, ducimus? Quaerat soluta commodi asperiores nemo repudiandae. Iusto et veniam ullam labore porro blanditiis debitis, at ea. Quisquam ullam modi consequatur necessitatibus sint maxime architecto quod voluptas vero, repellat culpa illo earum facere, eius, commodi veritatis voluptatem expedita suscipit consectetur reiciendis repudiandae. Totam at eos delectus placeat quaerat deleniti adipisci eveniet! Omnis maiores recusandae suscipit, sit accusantium, itaque officia labore nobis, illo eos impedit ab id eveniet rem blanditiis veritatis accusamus nesciunt ad error molestias dolore ipsa nihil corrupti numquam! Nam beatae explicabo repellendus magni distinctio cupiditate ipsa necessitatibus unde deserunt.</p>
+
+<main class="container py-5">
+    <section class="card card-body">
+        <h1 class="display-1 text-center">Django App</h1>
+        <p>Esta aplicación está diseñada para ayudarte a organizar tu día a día de manera eficiente y sencilla. Con una interfaz elegante impulsada por Django, un poderoso framework de Python, y un diseño moderno gracias a Bootstrap y FontAwesome, gestionar tus pendientes nunca había sido tan práctico.
+
+            Aquí podrás:
+            
+            Crear tareas: Anota rápidamente lo que necesitas hacer.
+            Editar tus pendientes: Mantén todo actualizado con solo unos clics.
+            Eliminar tareas completadas: Porque cumplir objetivos merece dejar espacio para los nuevos.
+            Interfaz intuitiva: Disfruta de un diseño responsivo y agradable en cualquier dispositivo.
+            Ya sea para trabajo, estudios o proyectos personales, nuestra aplicación TODO es tu aliada perfecta para mantener todo bajo control.
+            
+            ¡Regístrate o inicia sesión para comenzar a organizar tus tareas ahora mismo! 🚀
+        </p>
+
+        {% if user.is_authenticated %}
+        <div class="text-center">
+            <a class="btn btn-primary" href="/tasks/">
+                Go to Tasks
+            </a>
+        </div>
+        {% else %} 
+
+        <div class="text-center">
+            <a class="btn btn-primary" href="/signin/">
+                Sigin
+            </a>
+            <a class="btn btn-secondary" href="/signup/">
+                SignUp
+            </a>
+        </div>
+        {% endif %}
+
+    </section>
+</main>
+
+
 {% endblock %}
 
